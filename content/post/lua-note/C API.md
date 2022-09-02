@@ -63,7 +63,7 @@ int main()
 
 ## lua 和 C 组件的通信 
 lua 和 C 主要组件的通信 是通过强大的**虚栈（virtual stack）**
-![image-20210808235705964.png](https://cdn.nlark.com/yuque/0/2021/png/22158835/1628438458990-3d4e7c56-3359-476d-8d94-679e5f47bfe9.png#clientId=u5dd5abf4-1009-4&from=paste&height=294&id=u3f3da6a6&margin=%5Bobject%20Object%5D&name=image-20210808235705964.png&originHeight=587&originWidth=964&originalType=binary&ratio=1&size=25992&status=done&style=none&taskId=u50c835f9-6a2d-4c0b-95ab-c5cf8352bc4&width=482)
+![image-20210808235705964.png](capi-01.png)
 
 ### 虚栈压入元素
 ```
@@ -112,7 +112,7 @@ void lua_copy (lua_State *L, int fromidx, int toidx);
 
 - insert 的宏实现#define lua_insert(L,idx) lua_rotate(L, (idx), 1)
 
-![image-20210808235805302.png](https://cdn.nlark.com/yuque/0/2021/png/22158835/1628438498960-423715fd-ddbe-4469-be1d-f9e70c94cade.png#clientId=u5dd5abf4-1009-4&from=paste&height=402&id=u053dd0ca&margin=%5Bobject%20Object%5D&name=image-20210808235805302.png&originHeight=804&originWidth=969&originalType=binary&ratio=1&size=120930&status=done&style=none&taskId=u48dd8639-a6d2-4e23-8918-4f3b8c1a3cc&width=484.5)
+![image-20210808235805302.png](capi-02.png)
 
 - lua_rotate 源码：
 ```c
