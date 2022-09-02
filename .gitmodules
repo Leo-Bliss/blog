@@ -1,0 +1,6 @@
+[submodule "themes/hugo-theme-stack"]
+	path = themes/hugo-theme-stack
+	url = https://github.com/CaiJimmy/hugo-theme-stack/
+[submodule "tbyouth.github.io"]
+	path = public
+	url = https://github.com/tbyouth/tbyouth.github.io.git
