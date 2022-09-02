@@ -2,8 +2,9 @@
 title: "lua-C API"
 date: 2021-07-25
 description: "lua 相关的c api"
+image: capi-01.png
 categories: [
-	"Lua",
+	"Lua"
 ]	
 tags: [
    
@@ -60,10 +61,11 @@ int main()
 
 ```
 
-
 ## lua 和 C 组件的通信 
+
 lua 和 C 主要组件的通信 是通过强大的**虚栈（virtual stack）**
-![image-20210808235705964.png](capi-01.png)
+
+![capi-01](capi-01.png)
 
 ### 虚栈压入元素
 ```
@@ -88,31 +90,29 @@ lua 和 C 主要组件的通信 是通过强大的**虚栈（virtual stack）**
 - **检查获取元素的类型** 可以使用：int lua_is* (lua_State *L, int index);,*换成想要检查的**lua数据类型** ，比如lua_isnil,lua_isstring。lua_isnumber和lua_isstring比较特殊，两者并不能确定元素类型而是是检查index位置上的元素是否可以转换为该类型。除此之外可以使用lua_type(L,index)获取到元素类型，返回值是lua.h中定义的宏，比如：LUA_TNIL, LUA_TBOOLEAN, LUA_TNUMBER, LUA_TSTRING。
 - 获取元素的函数：
 
- int lua_toboolean (lua_State *L, int index); // nil和false时为0，其他类型元素为1
- const char *lua_tolstring (lua_State *L, int index,size_t *len); // 同时获取字符串长度，存到len中
- const char *lua_tostring (lua_State *L, int index); // 不需要长度信息可使用这个函数获取字符串
- lua_State *lua_tothread (lua_State *L, int index); // index处获取一个线程，失败时返回NULL
- lua_Number lua_tonumber (lua_State *L, int index);
- lua_Integer lua_tointeger (lua_State *L, int index);
+   - int lua_toboolean (lua_State *L, int index); // nil和false时为0，其他类型元素为1
+   - const char *lua_tolstring (lua_State *L, int index,size_t *len); // 同时获取字符串长度，存到len中
+   -  const char *lua_tostring (lua_State *L, int index); // 不需要长度信息可使用这个函数获取字符串
+   -  lua_State *lua_tothread (lua_State *L, int index); // index处获取一个线程，失败时返回NULL
+   -  lua_Number lua_tonumber (lua_State *L, int index);
+   -  lua_Integer lua_tointeger (lua_State *L, int index);
 
 ### 其他虚栈操作
-int lua_gettop (lua_State *L); // 获取栈元素个数，也是栈顶的的正index
-void lua_settop (lua_State *L, int index); // 当index大于现在栈元素个数时补nil,小于时丢弃多的，置空：lua_settop(L,0)
-void lua_pushvalue (lua_State *L, int index); // 拷贝一个index处的元素压入栈中
-void lua_rotate (lua_State *L, int index, int n); // 从index处到栈顶，旋转n个位置
-void lua_remove (lua_State *L, int index); // 移除index处元素
-void lua_insert (lua_State *L, int index); // 将index处元素放到栈顶
-void lua_replace (lua_State *L, int index); // 弹出栈顶元素赋值到index处
-void lua_copy (lua_State *L, int fromidx, int toidx);
++ int lua_gettop (lua_State *L); // 获取栈元素个数，也是栈顶的的正index
++ void lua_settop (lua_State *L, int index); // 当index大于现在栈元素个数时补nil,小于时丢弃多的，置空：lua_settop(L,0)
++ void lua_pushvalue (lua_State *L, int index); // 拷贝一个index处的元素压入栈中
++ void lua_rotate (lua_State *L, int index, int n); // 从index处到栈顶，旋转n个位置
++ void lua_remove (lua_State *L, int index); // 移除index处元素
++ void lua_insert (lua_State *L, int index); // 将index处元素放到栈顶
++ void lua_replace (lua_State *L, int index); // 弹出栈顶元素赋值到index处
++ void lua_copy (lua_State *L, int fromidx, int toidx);
 
 - lua_settop (lua_State *L, int index)的index也可以是负下标，由此定义了一个弹出n个元素的宏#define lua_pop(L,n) lua_settop(L,-(n)-1)比如弹出3个元素，lua_pop(L,3) =>lua_settop(L,-4),栈顶-1设置成-4，由-1 to -4 弹出了3个元素；
-- remove宏可通过rotate和pop来实现：
+- remove宏可通过rotate和pop来实现：`#define lua_remove(L,idx) (lua_rotate(L, (idx), -1), lua_pop(L, 1))`
 
-#define lua_remove(L,idx) (lua_rotate(L, (idx), -1), lua_pop(L, 1))
+- insert 的宏实现`#define lua_insert(L,idx) lua_rotate(L, (idx), 1)`
 
-- insert 的宏实现#define lua_insert(L,idx) lua_rotate(L, (idx), 1)
-
-![image-20210808235805302.png](capi-02.png)
+![capi-02](capi-02.png)
 
 - lua_rotate 源码：
 ```c
