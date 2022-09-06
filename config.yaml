@@ -56,7 +56,7 @@ params:
 
     comments:
         enabled: true
-        provider: disqus
+        provider: utterances
 
         disqusjs:
             shortname:
@@ -66,9 +66,9 @@ params:
             adminLabel:
 
         utterances:
-            repo:
+            repo: tbyouth/tbyouth.github.io
             issueTerm: pathname
-            label:
+            label: question
 
         remark42:
             host:
