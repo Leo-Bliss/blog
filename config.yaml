@@ -67,7 +67,7 @@ params:
 
         utterances:
             repo: tbyouth/tbyouth.github.io
-            issueTerm: pathname
+            issueTerm: url
             label: comments
 
         remark42:
