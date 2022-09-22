@@ -4,10 +4,10 @@ date: 2022-08-31
 description: ""
 categories: [
 	"C++",
-	"多线程",
+
 ]	
 tags: [
-   
+   "多线程"
 ]
 draft: false
 ---
@@ -173,7 +173,7 @@ t.deatch(); // 分离，子线程执行不可控，子线程和主线程各自�
   ```
   
 #### windows下的临界区
-  
+
 ```cpp
   #include <windows.h>
   #include <vector>
@@ -211,8 +211,8 @@ t.deatch(); // 分离，子线程执行不可控，子线程和主线程各自�
       private:
       	CRITICAL_SECTION* _pCS;
   };
-  ```
-  
+```
+
 + windows中允许在同一个线程中（不同线程会卡住等待）进入同一个临界区多次, c++11不允许在同一线程中lock普通互斥量多次，否则报异常；
 
 #### recursive_mutex

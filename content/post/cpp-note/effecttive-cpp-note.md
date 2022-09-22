@@ -3,11 +3,10 @@ title: "《More Effective C++》技术章节笔记"
 date: 2022-08-31
 description: "阅读《More Effective C++》技术章节过程中的总结"
 categories: [
-	"读书笔记",
 	"C++"
 ]	
 tags: [
-    "C++",
+   "读书笔记"
 ]
 draft: false
 ---

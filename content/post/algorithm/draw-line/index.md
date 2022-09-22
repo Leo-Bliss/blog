@@ -3,7 +3,7 @@ title: "画线算法"
 date: 2022-09-18T22:19:00+08:00
 description: "画线算法总结"
 categories: [
-	"algorithm"
+	"Algorithm"
 ]	
 tags: [
    "DDA","Bresenham"

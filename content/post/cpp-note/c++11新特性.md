@@ -6,7 +6,7 @@ categories: [
 	"C++"
 ]	
 tags: [
-   "C++"
+   
 ]
 draft: false
 ---

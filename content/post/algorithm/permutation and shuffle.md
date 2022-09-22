@@ -3,10 +3,10 @@ title: "洗牌和全排列的联系"
 date: 2022-09-21T23:36:00+08:00
 description: "之前写到洗牌算法(Fisher-Yates洗牌)和全排列算法，突然发现它们交换过程惊奇一致。"
 categories: [
-	"algorithm"
+	"Algorithm"
 ]	
 tags: [
-   "shuffle","permutation"
+   "Shuffle","Permutation"
 ]
 draft: false
 ---
