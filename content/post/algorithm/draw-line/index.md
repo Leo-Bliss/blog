@@ -1,7 +1,7 @@
 ---
 title: "画线算法"
 date: 2022-09-18T22:19:00+08:00
-description: "画线算法总结"
+description: "由浅入深对画线算法进行推导，涉及到画线朴素做法，DDA,Bresnham以及其优化思路。"
 categories: [
 	"Algorithm"
 ]	
@@ -365,11 +365,11 @@ void line(int x0, int y0, int x1, int y1, TGAImage& image, const TGAColor& color
 		std::swap(x0, x1);
 		std::swap(y0, y1);
 	}
-    // 以下逻辑为斜率k: 0 <= k <= 1
+	// 以下逻辑为斜率k: 0 <= k <= 1
 	int dx = x1 - x0;
 	int dy = y1 - y0;
-    const int twoDx = 2 * dx;
-    const int twoDy = 2 * dy;
+	const int twoDx = 2 * dx;
+	const int twoDy = 2 * dy;
 	int d = dx - twoDx;
 	for (int x = x0, y = y0; x <= x1; ++x)
 	{
@@ -390,7 +390,7 @@ void line(int x0, int y0, int x1, int y1, TGAImage& image, const TGAColor& color
 		{
 			d = d - twoDy;
 		}
-		
+
 	}
 }
 ```
@@ -442,12 +442,12 @@ void line(int x0, int y0, int x1, int y1, TGAImage& image, const TGAColor& color
 		std::swap(x0, x1);
 		std::swap(y0, y1);
 	}
-    // 以下逻辑为斜率k: 0 <= k <= 1
+	// 以下逻辑为斜率k: 0 <= k <= 1
 	int dx = x1 - x0;
 	int dy = y1 - y0;
 	int d = -dx;
-    const int twoDx = 2 * dx;
-    const int twoDy = 2 * dy;
+	const int twoDx = 2 * dx;
+	const int twoDy = 2 * dy;
 	for (int x = x0, y = y0; x <= x1; ++x)
 	{
 		if (steep)
