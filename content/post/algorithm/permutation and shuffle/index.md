@@ -8,7 +8,7 @@ categories: [
 tags: [
    "shuffle","permutation"
 ]
-draft: true
+draft: false
 ---
 ## 洗牌算法
 
